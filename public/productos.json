@@ -1,0 +1,164 @@
+[
+  {
+    "id": 1,
+    "nombre": "Oversize Clásico Negro",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 45000,
+    "imagen": "/img/Hombre/oversize1.png",
+    "descripcion": "Camiseta oversize de algodón 100%"
+  },
+  {
+    "id": 2,
+    "nombre": "Oversize Moderno Blanco",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 48000,
+    "imagen": "/img/Hombre/oversize2.png",
+    "descripcion": "Diseño moderno y cómodo"
+  },
+  {
+    "id": 3,
+    "nombre": "Oversize Urbano Gris",
+    "categoria": "Oversize",
+    "genero": "Hombre",
+    "precio": 47000,
+    "imagen": "/img/Hombre/oversize3.png",
+    "descripcion": "Estilo urbano casual"
+  },
+  {
+    "id": 4,
+    "nombre": "Pantalón Jean Clásico",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 85000,
+    "imagen": "/img/Hombre/pantalon1.png",
+    "descripcion": "Jean de mezclilla resistente"
+  },
+  {
+    "id": 5,
+    "nombre": "Pantalón Cargo Negro",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 95000,
+    "imagen": "/img/Hombre/pantalon2.png",
+    "descripcion": "Pantalón cargo con múltiples bolsillos"
+  },
+  {
+    "id": 6,
+    "nombre": "Pantalón Formal Azul",
+    "categoria": "Pantalon",
+    "genero": "Hombre",
+    "precio": 110000,
+    "imagen": "/img/Hombre/pantalon3.png",
+    "descripcion": "Elegante para ocasiones formales"
+  },
+  {
+    "id": 7,
+    "nombre": "Saco Deportivo Rojo",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 120000,
+    "imagen": "/img/Hombre/saco1.png",
+    "descripcion": "Saco deportivo cómodo"
+  },
+  {
+    "id": 8,
+    "nombre": "Saco Cuero Negro",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 180000,
+    "imagen": "/img/Hombre/saco2.png",
+    "descripcion": "Saco de cuero sintético"
+  },
+  {
+    "id": 9,
+    "nombre": "Saco Casual Beige",
+    "categoria": "Saco",
+    "genero": "Hombre",
+    "precio": 135000,
+    "imagen": "/img/Hombre/saco3.png",
+    "descripcion": "Perfecto para el día a día"
+  },
+  {
+    "id": 10,
+    "nombre": "Oversize Rosa Pastel",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 42000,
+    "imagen": "/img/Mujer/oversize1.png",
+    "descripcion": "Suave y cómodo para cualquier ocasión"
+  },
+  {
+    "id": 11,
+    "nombre": "Oversize Blanco Mujer",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 44000,
+    "imagen": "/img/Mujer/oversize2.png",
+    "descripcion": "Diseño minimalista"
+  },
+  {
+    "id": 12,
+    "nombre": "Oversize Estampado",
+    "categoria": "Oversize",
+    "genero": "Mujer",
+    "precio": 50000,
+    "imagen": "/img/Mujer/oversize3.png",
+    "descripcion": "Con estampado único"
+  },
+  {
+    "id": 13,
+    "nombre": "Pantalón Jean Ajustado",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 90000,
+    "imagen": "/img/Mujer/pantalon1.png",
+    "descripcion": "Corte moderno ajustado"
+  },
+  {
+    "id": 14,
+    "nombre": "Pantalón Negro Elegante",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 95000,
+    "imagen": "/img/Mujer/pantalon2.png",
+    "descripcion": "Ideal para el trabajo"
+  },
+  {
+    "id": 15,
+    "nombre": "Pantalón Casual Mujer",
+    "categoria": "Pantalon",
+    "genero": "Mujer",
+    "precio": 88000,
+    "imagen": "/img/Mujer/pantalon3.png",
+    "descripcion": "Cómodo y versátil"
+  },
+  {
+    "id": 16,
+    "nombre": "Saco Denim Mujer",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 125000,
+    "imagen": "/img/Mujer/saco1.png",
+    "descripcion": "Chaqueta de mezclilla clásica"
+  },
+  {
+    "id": 17,
+    "nombre": "Saco Bomber Rosa",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 145000,
+    "imagen": "/img/Mujer/saco2.png",
+    "descripcion": "Estilo bomber moderno"
+  },
+  {
+    "id": 18,
+    "nombre": "Saco Largo Gris",
+    "categoria": "Saco",
+    "genero": "Mujer",
+    "precio": 160000,
+    "imagen": "/img/Mujer/saco3.png",
+    "descripcion": "Elegante y sofisticado"
+  }
+]

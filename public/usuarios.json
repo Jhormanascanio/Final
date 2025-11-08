@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "usuario": "admin",
+    "password": "admin123",
+    "nombre": "Administrador"
+  },
+  {
+    "id": 2,
+    "usuario": "harol",
+    "password": "harol123",
+    "nombre": "Harol Camilo Melo Torrado"
+  },
+  {
+    "id": 3,
+    "usuario": "jhorman",
+    "password": "jhorman123",
+    "nombre": "Jhorman Esneider Ascanio Tarazona"
+  }
+]

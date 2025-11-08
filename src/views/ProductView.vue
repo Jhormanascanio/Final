@@ -1,0 +1,255 @@
+<template>
+  <div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2>
+        <i class="bi bi-bag-fill me-2"></i>
+        Gestión de Productos
+      </h2>
+      <button @click="mostrarModalCrear" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>
+        Nuevo Producto
+      </button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="card mb-4 shadow-sm">
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Categoría</label>
+            <select v-model="filtros.categoria" class="form-select">
+              <option value="">Todas</option>
+              <option value="Oversize">Oversize</option>
+              <option value="Pantalon">Pantalón</option>
+              <option value="Saco">Saco</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Género</label>
+            <select v-model="filtros.genero" class="form-select">
+              <option value="">Todos</option>
+              <option value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Buscar</label>
+            <input v-model="filtros.busqueda" type="text" class="form-control" placeholder="Nombre del producto">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de productos -->
+    <div v-if="productosFiltrados.length > 0" class="row g-4">
+      <div v-for="producto in productosFiltrados" :key="producto.id" class="col-md-4">
+        <ProductCardComponent 
+          :producto="producto"
+          @ver-detalle="verDetalle"
+          @editar="editarProducto"
+          @eliminar="confirmarEliminar"
+        />
+      </div>
+    </div>
+
+    <div v-else class="alert alert-info">
+      <i class="bi bi-info-circle me-2"></i>
+      No se encontraron productos con los filtros aplicados
+    </div>
+
+    <!-- Modal Crear/Editar -->
+    <div v-if="mostrarModal" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5)">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              {{ modoEdicion ? 'Editar Producto' : 'Nuevo Producto' }}
+            </h5>
+            <button type="button" class="btn-close" @click="cerrarModal"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="guardarProducto">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nombre *</label>
+                  <input v-model="productoForm.nombre" type="text" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Precio *</label>
+                  <input v-model.number="productoForm.precio" type="number" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Categoría *</label>
+                  <select v-model="productoForm.categoria" class="form-select" required>
+                    <option value="Oversize">Oversize</option>
+                    <option value="Pantalon">Pantalón</option>
+                    <option value="Saco">Saco</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Género *</label>
+                  <select v-model="productoForm.genero" class="form-select" required>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Descripción *</label>
+                  <textarea v-model="productoForm.descripcion" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">URL de Imagen *</label>
+                  <input v-model="productoForm.imagen" type="text" class="form-control" required>
+                  <small class="text-muted">Ejemplo: /img/Hombre/oversize1.png</small>
+                </div>
+              </div>
+              <div class="mt-3 d-flex gap-2 justify-content-end">
+                <button type="button" class="btn btn-secondary" @click="cerrarModal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">
+                  <i class="bi bi-save me-2"></i>
+                  Guardar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Detalle -->
+    <div v-if="mostrarModalDetalle" class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5)">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Detalle del Producto</h5>
+            <button type="button" class="btn-close" @click="mostrarModalDetalle = false"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row" v-if="productoDetalle">
+              <div class="col-md-6">
+                <img :src="productoDetalle.imagen" class="img-fluid rounded" :alt="productoDetalle.nombre">
+              </div>
+              <div class="col-md-6">
+                <h3>{{ productoDetalle.nombre }}</h3>
+                <p class="text-muted">{{ productoDetalle.descripcion }}</p>
+                <hr>
+                <p><strong>Categoría:</strong> {{ productoDetalle.categoria }}</p>
+                <p><strong>Género:</strong> {{ productoDetalle.genero }}</p>
+                <p><strong>Precio:</strong> <span class="text-primary fs-4">${{ productoDetalle.precio.toLocaleString('es-CO') }}</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import ProductCardComponent from '../components/ProductCardComponent.vue';
+import { obtenerProductos, crearProducto, actualizarProducto, eliminarProducto } from '../services/api';
+
+export default {
+  name: 'ProductView',
+  components: {
+    ProductCardComponent
+  },
+  data() {
+    return {
+      productos: [],
+      filtros: {
+        categoria: '',
+        genero: '',
+        busqueda: ''
+      },
+      mostrarModal: false,
+      mostrarModalDetalle: false,
+      modoEdicion: false,
+      productoForm: {
+        id: null,
+        nombre: '',
+        categoria: '',
+        genero: '',
+        precio: 0,
+        imagen: '',
+        descripcion: ''
+      },
+      productoDetalle: null
+    };
+  },
+  computed: {
+    productosFiltrados() {
+      return this.productos.filter(p => {
+        const matchCategoria = !this.filtros.categoria || p.categoria === this.filtros.categoria;
+        const matchGenero = !this.filtros.genero || p.genero === this.filtros.genero;
+        const matchBusqueda = !this.filtros.busqueda || 
+          p.nombre.toLowerCase().includes(this.filtros.busqueda.toLowerCase());
+        return matchCategoria && matchGenero && matchBusqueda;
+      });
+    }
+  },
+  async mounted() {
+    await this.cargarProductos();
+  },
+  methods: {
+    async cargarProductos() {
+      try {
+        this.productos = await obtenerProductos();
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+      }
+    },
+    mostrarModalCrear() {
+      this.modoEdicion = false;
+      this.productoForm = {
+        id: null,
+        nombre: '',
+        categoria: '',
+        genero: '',
+        precio: 0,
+        imagen: '',
+        descripcion: ''
+      };
+      this.mostrarModal = true;
+    },
+    editarProducto(producto) {
+      this.modoEdicion = true;
+      this.productoForm = { ...producto };
+      this.mostrarModal = true;
+    },
+    async guardarProducto() {
+      try {
+        if (this.modoEdicion) {
+          await actualizarProducto(this.productoForm.id, this.productoForm);
+        } else {
+          await crearProducto(this.productoForm);
+        }
+        await this.cargarProductos();
+        this.cerrarModal();
+        alert('Producto guardado exitosamente');
+      } catch (error) {
+        console.error('Error al guardar producto:', error);
+        alert('Error al guardar el producto');
+      }
+    },
+    async confirmarEliminar(id) {
+      if (confirm('¿Estás seguro de eliminar este producto?')) {
+        try {
+          await eliminarProducto(id);
+          await this.cargarProductos();
+          alert('Producto eliminado exitosamente');
+        } catch (error) {
+          console.error('Error al eliminar producto:', error);
+        }
+      }
+    },
+    verDetalle(producto) {
+      this.productoDetalle = producto;
+      this.mostrarModalDetalle = true;
+    },
+    cerrarModal() {
+      this.mostrarModal = false;
+    }
+  }
+}
+</script>
