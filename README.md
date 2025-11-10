@@ -491,6 +491,6 @@ Este proyecto fue desarrollado como parte del segundo parcial de Desarrollo de A
 - Harol Camilo Melo Torrado (192471)
 - Jhorman Esneider Ascanio Tarazona (192534)
 
-**Universidad**: UFPS  
+**Universidad**: UFPSO  
 **Fecha**: Noviembre 2025  
 **Repositorio**: https://github.com/HarolTorrado73/segundoParcial
