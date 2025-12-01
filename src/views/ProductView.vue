@@ -187,7 +187,7 @@
                 <p><strong>Categoría:</strong> {{ productoDetalle.categoria }}</p>
                 <p><strong>Género:</strong> {{ productoDetalle.genero }}</p>
                 <p><strong>Precio:</strong> <span class="text-primary fs-4">${{
-                    productoDetalle.precio.toLocaleString('es-CO') }}</span></p>
+                  productoDetalle.precio.toLocaleString('es-CO') }}</span></p>
               </div>
             </div>
           </div>
@@ -243,7 +243,7 @@ export default {
         const matchCategoria = !this.filtros.categoria || p.categoria === this.filtros.categoria;
         const matchGenero = !this.filtros.genero || p.genero === this.filtros.genero;
         const matchBusqueda = !this.filtros.busqueda ||
-          p.nombre.toLowerCase().includes(this.filtros.busqueda.toLowerCase());
+          (p.nombre && p.nombre.toLowerCase().includes(this.filtros.busqueda.toLowerCase()));
         return matchCategoria && matchGenero && matchBusqueda;
       });
     }
